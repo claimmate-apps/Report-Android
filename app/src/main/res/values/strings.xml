@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ClaimMate Reports</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main">Claim Data Form V-0.01</string>
+    <string name="action_settings">Settings</string>
+    <string name="o_and_p">O &amp; P</string>
+    <string name="title_activity_verify">Verify Report</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_form_tab">FormTabActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="error_permission"><![CDATA[The app needs permissions, please enable from Settings>installed app > ClaimMate Report > Permissions > Enable all]]></string>
+    <string name="error_data_not_found">Data Not Found.</string>
+    <string name="error_field_required">This field is required</string>
+
+    <string-array name="sign">
+        <item>+</item>
+        <item>-</item>
+        <item>&amp;</item>
+        <item>M</item>
+        <item>I</item>
+    </string-array>
+
+    <string-array name="sign_">
+        <item>&amp;</item>
+        <item>Clean</item>
+    </string-array>
+
+    <string-array name="main">
+        <item>Siding</item>
+        <item>Insulation</item>
+        <item>Soffit</item>
+        <item>Fascia</item>
+        <item>Gutters</item>
+        <item>DownSpouts</item>
+        <item>Gutterguards</item>
+        <item>Shutters</item>
+        <item>Vents</item>
+        <item>Windows</item>
+        <item>Doors</item>
+        <item>AC Units</item>
+        <item>Light Fixtures</item>
+        <item>Decks</item>
+        <item>Fence</item>
+        <item>Shed</item>
+        <item>Mailbox</item>
+        <item>Paint </item>
+        <item>Custom Data</item>
+    </string-array>
+
+    <string-array name="ceiling">
+        <item></item>
+        <item>Drywall</item>
+        <item>Insulation</item>
+        <item>Seal</item>
+        <item>Paint</item>
+        <item>Plaster</item>
+        <item>tile</item>
+        <item>Paint</item>
+        <item>Crown molding</item>
+        <item>Light</item>
+        <item>Ceiling fan</item>
+        <item>Wall paper</item>
+        <item>Texture </item>
+        <item>Trim</item>
+        <item>Custom Text</item>
+    </string-array>
+
+    <string-array name="wall">
+        <item></item>
+        <item>Drywall</item>
+        <item>Insulation</item>
+        <item>Seal</item>
+        <item>Paint</item>
+        <item>Plaster</item>
+        <item>tile</item>
+        <item>Paint</item>
+        <item>Light</item>
+        <item>Wall paper</item>
+        <item>Texture</item>
+        <item>Door</item>
+        <item>Window </item>
+        <item>Cabinet</item>
+        <item>Countertop</item>
+        <item>Tile</item>
+        <item>Insulation</item>
+        <item>Custom Text</item>
+    </string-array>
+
+    <string-array name="floor">
+        <item></item>
+        <item>Tile</item>
+        <item>Vinyl</item>
+        <item>Wood</item>
+        <item>Laminate</item>
+        <item>Subfloor</item>
+        <item>Carpet</item>
+        <item>Pad</item>
+        <item>Custom Text</item>
+    </string-array>
+
+    <string-array name="prep">
+        <item></item>
+        <item>CrownS</item>
+        <item>CrownP</item>
+        <item>CasingS</item>
+        <item>CasingP</item>
+        <item>BaseS</item>
+        <item>BaseP</item>
+        <item>Custom Text</item>
+    </string-array>
+</resources>

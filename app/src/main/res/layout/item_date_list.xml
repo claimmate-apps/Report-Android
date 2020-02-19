@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/rect_black_border"
+    android:id="@+id/txtItem"
+    android:textColor="@color/black"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:layout_height="40dp"
+    android:layout_marginRight="5dp"
+    android:orientation="horizontal" />

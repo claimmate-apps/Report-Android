@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <HorizontalScrollView
+        android:id="@+id/hScr_Main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#000000" >
+
+        <LinearLayout
+            android:id="@+id/ll_Main_Menu_Holder"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_Main_Menu_ClaimInfo"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Claim Info"
+                 />
+
+            <Button
+                android:id="@+id/btn_Main_Menu_DwellingInfo"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Dwelling Info" />
+
+            <Button
+                android:id="@+id/btn_Main_Menu_Roof"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Roof" />
+
+            <Button
+                android:id="@+id/btn_Main_Menu_Elevations"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Elevations" />
+
+            <Button
+                android:id="@+id/btn_Main_Menu_Interior"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Interior" />
+
+            <Button
+                android:id="@+id/btn_Main_Menu_Custom"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Custom" />
+
+            <Button
+                android:id="@+id/btn_Main_Menu_CovB"
+                style="@style/style_btn_main_horizontal_tab"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Cov B" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:id="@+id/fl_Main_Container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/hScr_Main" >
+    </FrameLayout>
+
+</RelativeLayout>

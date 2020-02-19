@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/llRoof"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:visibility="visible" >
+        <CheckBox
+            android:id="@+id/chbx_roof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roof" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Pitch" />
+
+        <EditText
+            android:id="@+id/et_roof_Pitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Layers" />
+
+        <EditText
+            android:id="@+id/et_roof_Layers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Edge Metal" />
+
+        <Spinner
+            android:id="@+id/spnr_roof_edge_metal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/roof_edge_metal" />
+
+        <EditText
+            android:id="@+id/et_roof_edge_metal_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Type" />
+
+        <Spinner
+            android:id="@+id/spnr_roof_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/roof_type" />
+
+        <EditText
+            android:id="@+id/et_roof_type_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Age" />
+
+        <EditText
+            android:id="@+id/et_roof_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+        
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Roof Damage" />
+
+        <Spinner
+            android:id="@+id/spnr_dmg_roof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:entries="@array/dmg_roof" />
+
+        <EditText
+            android:id="@+id/et_dmg_roof_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:visibility="gone" />
+
+        
+    </LinearLayout>
+
+</ScrollView>

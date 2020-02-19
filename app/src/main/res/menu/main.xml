@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.cwclaims.claimapp.activity.FormActivity" >
+
+    <item
+        android:id="@+id/menu_generate_report"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Generate Report"/>
+
+</menu>

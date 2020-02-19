@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrayNames">
+        <item>Mr.</item>
+        <item>Ms.</item>
+        <item>Mr. &amp; Ms.</item>
+        <item>None</item>
+    </string-array>
+    <string-array name="roof_edge_metal">
+        <item>Drip edge</item>
+        <item>No drip edge</item>
+        <item>Gutter apron</item>
+        <item>gutter apron and drip edge</item>
+        <item></item>
+        <item>Insert custom data</item>
+    </string-array>
+    
+    <string-array name="roof_type">
+        <item>25 year 3-Tab Shingle with</item>
+        <item>30 year Dimensional Shingle with</item>
+        <item>Metal roofing</item>
+        <item>Rubber roofing</item>
+        <item>LIFETIME WARRANTY</item>
+        <item></item>
+        <item>Insert custom data</item>
+    </string-array>
+    
+    <string-array name="dwl_first">
+        <item>Conventional wood framed</item>
+        <item>Brick</item>
+        <item>Insert custom data</item>
+    </string-array>
+    <string-array name="dwl_second">
+        <item>Residential</item>
+        <item>Commercial</item>
+        <item></item>
+        <item>Insert custom data</item>
+    </string-array>
+    <string-array name="dwl_third">
+        <item>Single Family Dwelling</item>
+        <item>Condo</item>
+        <item></item>
+        <item>Insert custom data</item>
+    </string-array>
+    <string-array name="dwl_fourth">
+        <item>one car garage attached to the dwelling</item>
+        <item>two car garage attached to the dwelling</item>
+        <item>with no garage.</item>
+        <item>Two car garage is detached from the dwelling.</item>
+        <item></item>
+        <item>Insert custom data</item>
+    </string-array>
+    <string-array name="dwl_fifth">
+        <item>Brick veneer and vinyl siding</item>
+        <item>Brick veneer and aluminum siding</item>
+        <item>All brick exterior</item>
+        <item>Vinyl siding exterior</item>
+        <item>Aluminum siding exterior</item>
+        <item>Insert custom data</item>
+    </string-array>
+    
+    <string-array name="dmg_interior_damage">
+        <item>No Interior damage reported - Inspection of interior declined.</item>
+        <item>Water damage to the ceilings in several rooms.  Repairs are included in the attached estimate.</item>
+        <item>Interior drywall damage on the ceilings in several rooms.  Minor drywall work and painting required for repairs, and is included in estimate.</item>
+        <item>Water damage in the basement from the sewer back up damaged the paneling on the walls in the main basement.  The floor needs to be cleaned in the Utility room.  There are contents that were affected.  [INSURED NAME]  will go through the contents and discus with Inside rep. The interior repairs may not be covered damage on this claim, but an estimate for repairs has been included for review by inside rep and as a tool to help  [INSURED NAME]  to get the repairs completed.</item>
+        <item>Insert custom data</item>
+    </string-array>
+    <string-array name="dmg_roof">
+        <item>N/A</item>
+        <item>No storm related damage found during inspection of Roof</item>
+        <item>ROOF HAS SUSTAINED WIND DAMAGE IN MANY LOCATIONS AND HAS A LARGE NUMBER OF MISSING, BROKEN, AND DAMAGED SHINGLES.  THEREFORE REPAIR IS NOT AN OPTION AND FULL ROOF REPLACEMENT IS ESTIMATED FOR.</item>
+        <item>Hail Damage of 8 hits per sq present on all slopes.  Based on the age and condition of the materials, and the amount of damage, repair is not an option and full replacement has been included in the attached estimate.</item>
+        <item>No Damage found on the shingles, the soft metal roof vents have Hail Damage damage present.  The repairs include replacing the vents and allowing 3 shingles per vent to make the repairs.</item>
+        <item></item>
+        <item>Insert custom data</item>
+	</string-array>
+    <string-array name="dmg_elevation">
+        <item>No storm related damage found to this elevation, No repairs recommended.</item>
+        <item>N/A</item>
+        <item>Minor hail damage found</item>
+        <item>Insert custom data</item>
+    </string-array>
+    <string-array name="dmg_notes">
+        <item>NONE TO ADD TO THE FILE AT THIS TIME.</item>
+        <item>Insert custom data</item>
+    </string-array>
+    
+    <string-array name="misc_title">
+        <item></item>
+        <!-- <item>[XM8_TOL_CODE]</item>-->
+        <item>[XM8_TOL_DESC]</item>
+        <item>High Winds</item>
+        <item>Hail</item>
+        <item>Drain Back up</item>
+        <item>Sub pump Failure</item>
+        <item>Insert custom data</item>
+    </string-array>
+
+    <string-array name="report_type">
+        <item>ClaimMate Report</item>
+        <item>Other Report</item>
+    </string-array>
+</resources>
