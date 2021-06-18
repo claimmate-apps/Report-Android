@@ -17,6 +17,13 @@
     <string name="error_data_not_found">Data Not Found.</string>
     <string name="error_field_required">This field is required</string>
 
+    <string name="error">Something went wrong!</string>
+    <string name="connection_faild">Connecting to server failed</string>
+    <string name="invalid_login">Invalid login</string>
+    <string name="str_back_one_more_end">Pressing once more will be terminated.</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="ok">OK</string>
+
     <string-array name="sign">
         <item>+</item>
         <item>-</item>

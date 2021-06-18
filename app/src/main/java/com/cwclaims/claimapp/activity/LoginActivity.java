@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
@@ -22,10 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cwclaims.claimapp.R;
+import com.cwclaims.claimapp.common.BaseActivity;
+import com.cwclaims.claimapp.common.Commons;
 import com.cwclaims.claimapp.other.PrefManager;
 import com.cwclaims.claimapp.other.Utility;
 import com.cwclaims.claimapp.retrofit.APIInterface;
 import com.cwclaims.claimapp.retrofit.ApiClient;
+import com.cwclaims.claimapp.retrofit.ApiManager;
+import com.cwclaims.claimapp.retrofit.ICallback;
+import com.google.gson.JsonObject;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,13 +41,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private final String TAG = "LoginActivity";
     private Context mContext;
 
+
+    int requestSignUp = 502;
+    String _email = "", _password = "";
+    boolean _isFromLogout = false;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -82,9 +94,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     login();
             }
         } else if (view.getId() == btnRegister.getId()) {
-            startActivity(new Intent(mContext, SignupActivity.class));
+            Intent register_act = new Intent(getApplicationContext(), SignUpActivity1.class);
+            startActivityForResult(register_act, requestSignUp);
+            //startActivity(new Intent(mContext, SignupActivity.class));
         } else if (view.getId() == txtForgotPassword.getId()) {
-            forgotPassword();
+            Intent register_act = new Intent(getApplicationContext(), ForgotActivity.class);
+            startActivity(register_act);
+            //forgotPassword();
         }
     }
 
@@ -96,7 +112,51 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         //final String IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
         final String IMEI = "ReportAppDeviceTokenStatic";
                 Utility.showProgress(mContext);
-        ApiClient.getClient().create(APIInterface.class).login(edtEmail.getText().toString(), edtPassword.getText().toString(), IMEI, "inspect").enqueue(new Callback<String>() {
+
+        ApiManager.login(edtEmail.getText().toString(), edtPassword.getText().toString(), new ICallback() {
+            @Override
+            public void onCompletion(ICallback.RESULT result, Object resultParam) {
+                Utility.dismissProgress();
+                switch (result){
+
+                    case FAILURE:
+
+                        if (resultParam == null)
+                            showToast1(getString(R.string.error));
+                        else {
+                            int resultCode = (Integer)resultParam;
+                            if (resultCode == 201)
+                                showToast1(getString(R.string.invalid_login));
+                        }
+                        break;
+
+
+                    case SUCCESS:
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                JsonObject jsonUser = ((JsonObject)resultParam).get(ApiManager.PARAMS.USER_DATA).getAsJsonObject();
+
+                                Log.d("user_id====>", jsonUser.get(ApiManager.PARAMS.USER_ID).getAsString());
+
+                                PrefManager.setUserId(jsonUser.get(ApiManager.PARAMS.USER_ID).getAsString());
+
+
+                                Prefs.putString(Commons.PREFKEY_USEREMAIL, _email);
+                                Prefs.putString(Commons.PREFKEY_USERPWD, _password);
+
+                                startActivity(new Intent(LoginActivity.this, ReportListActivity.class));
+                                LoginActivity.this.finish();
+                            }
+                        });
+
+                        break;
+                }
+            }
+        });
+        /*ApiClient.getClient().create(APIInterface.class).login(edtEmail.getText().toString(), edtPassword.getText().toString(), IMEI, "inspect").enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Utility.dismissProgress();
@@ -130,6 +190,69 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onFailure(Call<String> call, Throwable t) {
                 Utility.dismissProgress();
                 Log.i(TAG, "loginError = " + t.toString());
+            }
+        });*/
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestSignUp){
+            if (resultCode == Activity.RESULT_OK){
+
+                _email = (String)data.getStringExtra(Commons.PREFKEY_USEREMAIL);
+                _password = (String) data.getStringExtra(Commons.PREFKEY_USERPWD);
+
+                progressLogin();
+
+            }
+        }
+    }
+
+    private void progressLogin(){
+
+        Utility.showProgress(mContext);
+
+        ApiManager.login(_email, _password, new ICallback() {
+            @Override
+            public void onCompletion(ICallback.RESULT result, Object resultParam) {
+                Utility.dismissProgress();
+                switch (result){
+
+                    case FAILURE:
+
+                        if (resultParam == null)
+                            showToast1(getString(R.string.error));
+
+                        else {
+
+                            int resultCode = (Integer)resultParam;
+
+                            if (resultCode == 201)
+                                showToast1(getString(R.string.invalid_login));
+                        }
+                        break;
+
+                    case SUCCESS:
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                JsonObject jsonUser = ((JsonObject)resultParam).get(ApiManager.PARAMS.USER_DATA).getAsJsonObject();
+
+                                PrefManager.setUserId(jsonUser.get(ApiManager.PARAMS.USER_ID).getAsString());
+
+                                Prefs.putString(Commons.PREFKEY_USEREMAIL, _email);
+                                Prefs.putString(Commons.PREFKEY_USERPWD, _password);
+
+                                startActivity(new Intent(LoginActivity.this, ReportListActivity.class));
+                                LoginActivity.this.finish();
+                            }
+                        });
+
+                        break;
+                }
             }
         });
     }

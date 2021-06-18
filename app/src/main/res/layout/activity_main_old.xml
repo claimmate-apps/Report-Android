@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="INITIAL"
+                android:textSize="16sp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white" />
 
@@ -61,20 +62,38 @@
                 android:entries="@array/arrayNames"
                 android:padding="5dp" />
 
-            <EditText
-                android:id="@+id/et_first_ClaimantName"
-                android:inputType="textCapSentences"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:layout_margin="2dp"
-                android:ems="10"
                 android:background="@drawable/edit_bg_grey_border_"
-                android:hint="Claimant Name"
-                android:singleLine="true">
+                android:layout_marginLeft="2dp">
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_claim"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/et_first_ClaimantName"
+                    android:inputType="textCapSentences"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="0.5dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:layout_height="32dp"
+                    android:padding="3dp"
+                    android:ems="10"
+                    android:hint="Claimant Name"
+                    android:singleLine="true">
 
-                <requestFocus />
-            </EditText>
+                    <requestFocus />
+                </TextView>
+
+
+            </FrameLayout>
+
+
         </LinearLayout>
 
         <LinearLayout

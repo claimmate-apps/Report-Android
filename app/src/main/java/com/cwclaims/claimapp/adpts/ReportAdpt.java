@@ -105,7 +105,7 @@ public class ReportAdpt extends BaseAdapter {
                 else
                 {
                     intent = new Intent(context, AddReportActivity.class);
-                    intent.putExtra("cameraapp","0");
+                    intent.putExtra("flag","edit");
                     intent.putExtra("param", arrayList.get(i));
 
 

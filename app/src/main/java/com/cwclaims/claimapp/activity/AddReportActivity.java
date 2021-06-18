@@ -11,11 +11,18 @@ import com.cwclaims.claimapp.R;
 import com.cwclaims.claimapp.R.id;
 import com.cwclaims.claimapp.R.layout;
 import com.cwclaims.claimapp.adpts.SpinnerAdpt;
+import com.cwclaims.claimapp.common.BaseActivity;
+import com.cwclaims.claimapp.common.Commons;
 import com.cwclaims.claimapp.db.ClaimSqlLiteDbHelper;
+import com.cwclaims.claimapp.models.ClaimModel;
 import com.cwclaims.claimapp.models.ReportModel;
 import com.cwclaims.claimapp.other.PrefManager;
 import com.cwclaims.claimapp.other.Utility;
+import com.cwclaims.claimapp.retrofit.ApiManager;
+import com.cwclaims.claimapp.retrofit.ICallback;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,6 +36,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
@@ -68,7 +76,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class AddReportActivity extends Activity implements View.OnClickListener, OnCheckedChangeListener, OnItemSelectedListener {
+public class AddReportActivity extends BaseActivity implements View.OnClickListener, OnCheckedChangeListener, OnItemSelectedListener {
 
     private final String TAG = "AddReportActivity";
     private Context mContext;
@@ -76,7 +84,8 @@ public class AddReportActivity extends Activity implements View.OnClickListener,
     CheckBox l_min;
 
     // First
-    EditText etFirstClimantName, etFirstTolDesc, etFirstInsuredName, edtMortgagee, edtAdded, edtRemoved, edtContractorName, edtCompanyName;
+    TextView etFirstClimantName;
+    EditText etFirstTolDesc, etFirstInsuredName, edtMortgagee, edtAdded, edtRemoved, edtContractorName, edtCompanyName;
     Button btnFirstDateLoss, btnFirstDateInspected, btnFirstTimeInspected;
     CheckBox chbxFirstIsPresent, chbxInsuredNameDiff, chkmortgagee, chkContractor, chkNoMortgagee;
     TextView tvInsuredName;
@@ -163,20 +172,15 @@ public class AddReportActivity extends Activity implements View.OnClickListener,
     String appname = "";
     String ClaimId = "";
 
+    ArrayList<ClaimModel> arrayListClaim;
+    ArrayList<String> claims = new ArrayList<>();
+    AppCompatSpinner spinner_claims;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_old);
-
-
-        appname = getIntent().getStringExtra("cameraapp");
-
-        if(appname.equalsIgnoreCase("1"))
-        {
-            claimname = getIntent().getStringExtra("claimname");
-            ClaimId = getIntent().getStringExtra("claimid");
-        }
-
 
         // remove title
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -245,7 +249,75 @@ public class AddReportActivity extends Activity implements View.OnClickListener,
 
         getroof_edge_metalvalue("company", spnr_allarr, spnr_all);
 
-        setData();
+
+
+        spinner_claims = (AppCompatSpinner)findViewById(id.spinner_claim);
+        btnRepotz.setVisibility(View.GONE);
+
+        appname = getIntent().getStringExtra("flag");
+        if(appname.equalsIgnoreCase("add"))
+        {
+            getRequest();
+        } else if(appname.equalsIgnoreCase("edit"))
+        {
+            setData();
+            /*claimname = getIntent().getStringExtra("claimname");
+            ClaimId = getIntent().getStringExtra("claimid");*/
+        }
+
+    }
+
+    public void getRequest(){
+
+
+        arrayListClaim = new ArrayList<>();
+        ApiManager.getRequest(PrefManager.getUserId(), new ICallback() {
+            @Override
+            public void onCompletion(RESULT result, Object resultParam) {
+
+                switch (result){
+                    case FAILURE:
+                        showToast1("There is no assigned claim list to you.");
+
+                        break;
+
+                    case SUCCESS:
+
+                        arrayListClaim = (ArrayList<ClaimModel>) resultParam;
+
+                        if(arrayListClaim.size() > 0){
+                            for (int i = 0; i < arrayListClaim.size(); i++) {
+                                claims.add(arrayListClaim.get(i).getName());
+                            }
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(AddReportActivity.this, android.R.layout.simple_spinner_item, claims);
+                                    locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    spinner_claims.setAdapter(locationAdapter);
+                                    spinner_claims.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                                            Log.d("selected_reminder===>", claims.get(position));
+                                            etFirstClimantName.setText(claims.get(position));
+                                            //claimname = claims.get(position);
+                                            ClaimId = arrayListClaim.get(position).getId();
+                                        }
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parentView) {
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
+
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -289,7 +361,6 @@ public class AddReportActivity extends Activity implements View.OnClickListener,
             btnHarford.setTag("0");
             llReportType.setVisibility(View.VISIBLE);
         }
-        btnRepotz.setVisibility(View.GONE);
 
         if (reportModel == null) {
             if (PrefManager.getSetting().equals(""))
@@ -305,15 +376,15 @@ public class AddReportActivity extends Activity implements View.OnClickListener,
             }
         }
 
-        if(appname.equalsIgnoreCase("1"))
+         /*if(appname.equalsIgnoreCase("1"))
         {
             reportModel.setId(ClaimId);
         }
         else
         {
             etFirstClimantName.setText(reportModel.getClaimant_name());
-        }
-
+        }*/
+        etFirstClimantName.setText(reportModel.getClaimant_name());
 
         chbxInsuredNameDiff.setChecked(reportModel.getInsuredNameDiffernt().equals("1") ? true : false);
         etFirstInsuredName.setText(reportModel.getInsuredName());
@@ -1831,6 +1902,7 @@ public class AddReportActivity extends Activity implements View.OnClickListener,
         else
         {
             verifyActivityIntent.putExtra("reportId", "");
+            hm.put("claim_id", ClaimId);
 
         }
 

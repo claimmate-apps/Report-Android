@@ -12,8 +12,11 @@
         android:allowBackup="true"
         android:icon="@drawable/appicon"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ForgotActivity"></activity>
+        <activity android:name=".activity.SignUpActivity1" />
+        <activity android:name=".activity.SecurityActivity" />
         <activity
             android:name=".activity.AddReportActivity"
             android:label="@string/app_name"
@@ -21,7 +24,7 @@
         <activity
             android:name=".activity.VerifyReportActivity"
             android:label="@string/title_activity_verify"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".activity.TableNameListActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -38,18 +41,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SignupActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.SignupActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SettingActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan" />
-        <activity android:name=".activity.ReportzActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
-        <activity android:name=".activity.DamageActivity">
-        </activity>
-        <activity android:name=".activity.CustomReportActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-        </activity>
+        <activity
+            android:name=".activity.ReportzActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".activity.DamageActivity" />
+        <activity
+            android:name=".activity.CustomReportActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
+
 </manifest>

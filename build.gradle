@@ -3,9 +3,18 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "com.android.tools.build:gradle:4.0.2"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath('com.google.firebase:firebase-plugins:2.0.0') {
+            exclude group: 'com.google.guava', module: 'guava-jdk5'
+        }
+        classpath 'com.google.gms:google-services:4.3.3'
     }
 }
 
@@ -13,5 +22,13 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.google.com/'
+        }
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

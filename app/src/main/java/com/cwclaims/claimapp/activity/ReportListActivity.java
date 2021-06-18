@@ -22,12 +22,14 @@ import android.widget.Toast;
 import com.cwclaims.claimapp.R;
 import com.cwclaims.claimapp.adpts.ReportAdpt;
 import com.cwclaims.claimapp.adpts.SpinnerAdpt;
+import com.cwclaims.claimapp.common.Commons;
 import com.cwclaims.claimapp.models.ReportModel;
 import com.cwclaims.claimapp.other.PrefManager;
 import com.cwclaims.claimapp.other.Utility;
 import com.cwclaims.claimapp.retrofit.APIInterface;
 import com.cwclaims.claimapp.retrofit.ApiClient;
 import com.google.gson.Gson;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,7 +79,7 @@ public class ReportListActivity extends Activity implements View.OnClickListener
     protected void onStart() {
         super.onStart();
         getReport();
-        checkAuth();
+        //checkAuth();
     }
 
     private void getReport() {
@@ -174,7 +176,7 @@ public class ReportListActivity extends Activity implements View.OnClickListener
         {
 
             Intent addreportactivity = new Intent(ReportListActivity.this, AddReportActivity.class);
-            addreportactivity.putExtra("cameraapp","0");
+            addreportactivity.putExtra("flag","add");
             startActivity(addreportactivity);
 
 //            startActivity(new Intent(mContext, AddReportActivity.class));
@@ -187,7 +189,17 @@ public class ReportListActivity extends Activity implements View.OnClickListener
 
     private void logout() {
 
-        if (Utility.haveInternet(mContext)) {
+        PrefManager.logout();
+
+        Prefs.remove(Commons.PREFKEY_USEREMAIL);
+        Prefs.remove(Commons.PREFKEY_USERPWD);
+
+        Intent i = new Intent(this, LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
+
+        /*if (Utility.haveInternet(mContext)) {
             Utility.showProgress(mContext);
             ApiClient.getClient().create(APIInterface.class).logout(PrefManager.getUserId(), "inspect").enqueue(new Callback<String>() {
                 @Override
@@ -219,7 +231,7 @@ public class ReportListActivity extends Activity implements View.OnClickListener
                     Log.i(TAG, "logoutError = " + t.toString());
                 }
             });
-        }
+        }*/
     }
 
     SharedPreferences lastpathpf;
